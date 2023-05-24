@@ -1,5 +1,7 @@
 package notes;
 
+import java.lang.Math;
+
 public class Week2 {
     public static void main(String[] args) {
         // Constant variables:
@@ -32,15 +34,20 @@ public class Week2 {
          * System.out.println("1.0 - 0.9 = " + (1.0 - 0.9));
          */
 
-        int num1;
-        int num2, num3;
-        num1 = 1;
-        float num4 = 5.7f;
-        int num5 = 5, num6 = 6;
-        int r = 10;
-        int d = r;
-        int p = d;
-        int num7 = (int) num4;
-        final double TAX_RATE = 0.12;
+        // int num1;
+        // int num2, num3;
+        // num1 = 1;
+        // float num4 = 5.7f;
+        // int num5 = 5, num6 = 6;
+        // int r = 10;
+        // int d = r;
+        // int p = d;
+        // int num7 = (int) num4;
+        // final double TAX_RATE = 0.12;
+
+        /* Thursday 18/05/2023 */
+
+        char ch = 'a';
+        System.out.println(++ch);
     }
 }
