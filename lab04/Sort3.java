@@ -3,8 +3,9 @@ package lab04;
 import java.util.Scanner;
 
 /**
- * Program name:
- * (program description/purpose)
+ * Program name: Sort3
+ * This program sorts and displays in ascending order three integer values
+ * entered by the user.
  * 
  * @author Enrique Saracho Felix
  * @since June 5, 2023

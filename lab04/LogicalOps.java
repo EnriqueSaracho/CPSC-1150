@@ -3,8 +3,9 @@ package lab04;
 import java.util.Scanner;
 
 /**
- * Program name:
- * (program description/purpose)
+ * Program name: LogicalOps
+ * This program determines whether a value entered by the user is divisible by 5
+ * 'and' 6, 5 'or' 6, and 5 'or' 6 but 'not both'.
  * 
  * @author Enrique Saracho Felix
  * @since June 5, 2023
