@@ -1,6 +1,6 @@
 package notes;
 
-import java.lang.Math;
+// import java.lang.Math;
 
 public class Week2 {
     public static void main(String[] args) {

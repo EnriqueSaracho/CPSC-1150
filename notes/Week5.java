@@ -1,7 +1,7 @@
 package notes;
 
 // import java.lang.Math;
-import java.util.Scanner;
+// import java.util.Scanner;
 import java.lang.String;
 
 public class Week5 {
