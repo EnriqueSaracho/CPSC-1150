@@ -7,7 +7,7 @@ import java.util.Scanner;
  * (program description/purpose)
  * 
  * @author Enrique Saracho Felix
- * @since June 2, 2023
+ * @since June 5, 2023
  * 
  */
 public class Sort3 {
