@@ -47,7 +47,11 @@ public class Week2 {
 
         /* Thursday 18/05/2023 */
 
-        char ch = 'a';
-        System.out.println(++ch);
+        // char ch = 'a';
+        // System.out.println(++ch);
+
+        double doble = 2.6;
+        int entero = (int) doble;
+        System.out.println(entero);
     }
 }
