@@ -2,6 +2,10 @@ package notes;
 
 public class Test {
     public static void main(String[] args) {
-        System.out.println((12 > 11) && true ^ (!true || (3 > 5)));
+        int i = 11;
+        System.out.printf("%3d ", i);
+        System.out.printf("%3d ", 550);
+        System.out.printf("%3d %n", 540);
+        System.out.printf("%3d ", 003);
     }
 }
