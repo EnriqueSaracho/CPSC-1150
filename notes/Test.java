@@ -1,11 +1,26 @@
-package notes;
-
 public class Test {
     public static void main(String[] args) {
-        int i = 11;
-        System.out.printf("%3d ", i);
-        System.out.printf("%3d ", 550);
-        System.out.printf("%3d %n", 540);
-        System.out.printf("%3d ", 003);
+        int num = 2;
+        boolean result;
+        while (num < 1000) {
+            result = isPrime(num);
+            if (result)
+                printPrime(num);
+            num++;
+        }
+    }
+
+    public static boolean isPrime(int num) {
+        int divisor = 2;
+        if (divisor <= num / 2) {
+            if (num % divisor == 0)
+                return false;
+            divisor++;
+        }
+        return true;
+    }
+
+    public static void printPrime(int num) {
+        System.out.println(num);
     }
 }
