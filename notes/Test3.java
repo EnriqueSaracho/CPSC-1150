@@ -1,9 +1,10 @@
 public class Test3 {
     public static void main(String[] args) {
-        int t = 0;
-        if (t > 0)
-            System.out.print("Hello there");
+        char ch = ',';
+        System.out.println((int) ch);
+        if (ch >= 65 && ch <= 90)
+            System.out.println("Uppercase");
         else
-            return;
+            System.out.println("Not uppercase");
     }
 }
