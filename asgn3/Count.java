@@ -6,7 +6,7 @@ import java.util.Scanner;
  * letters and digits in the string.
  * 
  * @author Enrique Saracho Felix
- * @since July 7, 2023
+ * @since July 1, 2023
  * 
  */
 
