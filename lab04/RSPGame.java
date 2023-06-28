@@ -1,5 +1,3 @@
-package lab04;
-
 import java.lang.Math;
 import java.util.Scanner;
 
