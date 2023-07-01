@@ -50,7 +50,7 @@ public class WarGame {
 	}
 
 	/**
-	 * getInput: generates a random number between 1 and 52.
+	 * genInput: generates a random number between 1 and 52.
 	 * 
 	 * @return an integer between 1 and 52.
 	 */
