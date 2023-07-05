@@ -19,7 +19,7 @@ public class WarGame {
 		final int ROUND = 10;
 		int user, comp, score = 0;
 		for (int r = 1; r < ROUND + 1; ++r) {
-			comp = genInput();
+			comp = WarGame.genInput();
 			user = getInput(scan);
 			printRoundInfo(r, user, comp);
 			score = printRoundResult(score, user, comp);
@@ -35,7 +35,7 @@ public class WarGame {
 	 *              input.
 	 * @return an integer between 1 and 52 (inclusive).
 	 */
-	public static int getInput(Scanner input) {
+	public int getInput(Scanner input) {
 		int user;
 		boolean flag = false;
 		do {
