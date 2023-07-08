@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
  * it by a number, and check whether is symmetric.
  * 
  * @author Enrique Saracho Felix
- * @since July 7, 2023
+ * @since July 8, 2023
  * 
  */
 public class Matrix {
@@ -67,6 +67,7 @@ public class Matrix {
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Invalid input: Choose a number from 1 to 6.");
+                    break;
 
             }
         }
