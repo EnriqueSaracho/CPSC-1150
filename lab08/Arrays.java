@@ -19,7 +19,7 @@ public class Arrays {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter 5 double values:");
         for (int i = 0; i < 5; i++) {
-            myArray[i] = sc.nextInt();
+            myArray[i] = sc.nextDouble();
         }
 
         System.out.printf("Average = %.2f", average(myArray));
