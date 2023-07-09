@@ -45,7 +45,7 @@ public class ArraysExercise {
         printArray(arr1);
 
         // Calling merge().
-        int[] arr2 = { -1, 5, 11, 12 };
+        int[] arr2 = getArray();
         printArray(arr2);
         printArray(merge(arr1, arr2));
     }
