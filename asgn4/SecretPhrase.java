@@ -1,17 +1,29 @@
 import javax.swing.JOptionPane;
 
+/**
+ * Program name: SecretPhrase
+ * Allows the user to play a game in which the user tries to guess a random
+ * phrase in the least amount of tries posible, displaying the phrase's letters
+ * replaced by asterisks as a hint.
+ * 
+ * @author Enrique Saracho Felix
+ * @since July 14, 2023
+ * 
+ */
 public class SecretPhrase {
-    static String[] phrases = { "hello world", "go team", "winter is coming", "wakanda forever" };
+    static String[] phrases = { "Hello World", "Go team", "Winter is coming", "Wakanda forever", "Vancouver",
+            "Hiking is fun", "Tall Trees", "Hermit Turtle", "Mexico", "Canada" };
 
     /**
-     * main: loops through the game, printing the current state at the beginning of
-     * each loop.
+     * main: Loops through the game, until the user guesses all the letters
+     * correctly. It also keeps track of the tries and calculates the score. Once
+     * the user wins, it shows the word and the score.
      * 
      * @param args
      */
     public static void main(String[] args) {
-        int random = (int) (Math.random() * phrases.length - 1);
-        String phrase = phrases[random];
+        int random = (int) (Math.random() * phrases.length);
+        String phrase = phrases[random].toUpperCase();
         char[] guesses = new char[50];
         int guess = 0;
         int tries = 0;
@@ -25,7 +37,7 @@ public class SecretPhrase {
         float score = ((float) phrase.replace(" ", "").length() / (float) tries);
 
         JOptionPane.showMessageDialog(null,
-                String.format("Congratulations!\nThe phrase is \"%s\"\nYour score is %.3f", phrase, score));
+                String.format("Congratulations!\nThe phrase is \"%s\"\nYour score is %.3f", phrases[random], score));
     }
 
     /**
@@ -53,12 +65,15 @@ public class SecretPhrase {
      * getInput: Prompts the user to enter a character guess and shows the current
      * state of the phrase.
      * 
-     * @return
+     * @return A character enter by the user, transformed into uppercase.
      */
     public static char getInput(String phrase) {
         char guess;
         guess = JOptionPane.showInputDialog(null,
-                String.format("Play our game - guess the letter\nEnter one letter\n%s", phrase)).charAt(0);
+                String.format("Play our game - guess the letter\nEnter one letter\n%s", phrase.toUpperCase()))
+                .charAt(0);
+        guess = String.valueOf(guess).toUpperCase().charAt(0); // transform to uppercase.
+        JOptionPane.showMessageDialog(null, guess);
         return guess;
     }
 
