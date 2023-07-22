@@ -3,7 +3,9 @@ import javax.swing.JOptionPane;
 
 public class Test {
     public static void main(String[] args) {
-        phraseAndLetter();
+        int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+        printMatrix(matrix);
+        System.out.println("Matrix cross result: " + matrixCross(matrix, 0));
     }
 
     // Print array method.
@@ -16,6 +18,18 @@ public class Test {
     public static void printArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);
+        }
+    }
+
+    // Print matrix method
+    public static void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            System.out.print("{ ");
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.print("}");
+            System.out.println();
         }
     }
 
@@ -122,6 +136,62 @@ public class Test {
 
     /* Problem 8 */
     public static int mode(int[] arr) {
+        int len = arr.length;
+        int[] count = new int[len];
+        for (int i = 0; i < len; i++) {
+            count[i] = countTimes(arr, arr[i]);
+        }
+        int max = findMax(count);
+        return arr[max];
+    }
 
+    public static int findMax(int[] arr) {
+        int max = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > arr[max]) {
+                max = i;
+            }
+        }
+        return max;
+    }
+
+    public static int countTimes(int[] arr, int num) {
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == num) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /* Problem 9 */
+    public static void shuffleMatrix(int[][] matrix) {
+        int a, b, temp;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                a = (int) (Math.random() * matrix.length);
+                b = (int) (Math.random() * matrix[0].length);
+                temp = matrix[i][j];
+                matrix[i][j] = matrix[a][b];
+                matrix[a][b] = temp;
+            }
+        }
+    }
+
+    /* Problem 10 */
+    public static boolean matrixCross(int[][] matrix, int n) {
+        int rowSum = 0, columSum = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (i == n)
+                    rowSum += matrix[i][j];
+                if (j == n)
+                    columSum += matrix[i][j];
+            }
+        }
+        if (rowSum == columSum)
+            return true;
+        return false;
     }
 }
