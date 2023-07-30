@@ -15,6 +15,8 @@ import java.util.Scanner;
 public class SecretPhrase {
     static String[] phrases = new String[100];
     static int rounds = 5;
+    static float[] scores = new float[rounds];
+    static String[] guessed = new String[rounds];
 
     /**
      * main: Loops through the game, until the user guesses all the letters
@@ -26,12 +28,17 @@ public class SecretPhrase {
     public static void main(String[] args) throws Exception {
         getPhrases("./Phrases.txt");
 
-        float[] scores = new float[rounds];
-        float sum;
+        float sum = 0;
+        for (int i = 0; i < rounds; i++) {
+            playRound(i);
+            sum += scores[i];
+        }
+        float avg = sum / rounds;
 
-        playRound(1);
+        printResults(avg);
     }
 
+    // TODO: External documentation
     /**
      * playRound: Runs a round of the guessing game by picking a random phrase from
      * the phrases global array, keeping track of the guesses, counting the tries
@@ -40,9 +47,10 @@ public class SecretPhrase {
      * @param round
      * @return the score of the round.
      */
-    public static float playRound(int round) {
+    public static void playRound(int round) {
         int random = (int) (Math.random() * getPhrasesLength(phrases));
-        String phrase = phrases[random].toUpperCase();
+        String ogPhrase = phrases[random];
+        String phrase = ogPhrase.toUpperCase();
         char[] guesses = new char[50];
         int guess = 0;
 
@@ -54,9 +62,10 @@ public class SecretPhrase {
         float score = ((float) phrase.replace(" ", "").length() / (float) guess);
 
         JOptionPane.showMessageDialog(null,
-                String.format("Round %d\nCongratulations!\nThe phrase is \"%s\"\nYour score is %.3f", round,
-                        phrases[random], score));
-        return score;
+                String.format("Round %d\nCongratulations!\nThe phrase is \"%s\"\nYour score is %.3f", round + 1,
+                        ogPhrase, score));
+        scores[round] = score;
+        guessed[round] = ogPhrase;
     }
 
     /**
@@ -89,7 +98,7 @@ public class SecretPhrase {
     public static char getInput(String phrase, int round) {
         char guess;
         guess = JOptionPane.showInputDialog(null,
-                String.format("Round %d\nPlay our game - guess the letter\nEnter one letter\n%s", round,
+                String.format("Round %d\nPlay our game - guess the letter\nEnter one letter\n%s", round + 1,
                         phrase.toUpperCase()))
                 .charAt(0);
         guess = String.valueOf(guess).toUpperCase().charAt(0); // transform to uppercase.
@@ -138,13 +147,6 @@ public class SecretPhrase {
         input.close();
     }
 
-    // TODO: Erase this one
-    // public static void printPhrases(String[] phrases) {
-    // for (int phrase = 0; phrase < getPhrasesLength(phrases); phrase++) {
-    // System.out.println(phrases[phrase]);
-    // }
-    // }
-
     // TODO: External documentation
     /**
      * getPhrasesLength: Counts the number of elements inside the phrases global
@@ -161,5 +163,24 @@ public class SecretPhrase {
             i++;
         }
         return count;
+    }
+
+    // TODO: External documentation
+    /**
+     * printResults: Prints the results of the game in tabular form. A column for
+     * the rounds, one for the phrase and another for the score. It also displays
+     * the average score below the table.
+     * 
+     * @param avg
+     */
+    public static void printResults(float avg) {
+        JOptionPane.showMessageDialog(null, "Check the console for the results.");
+        System.out.printf("\n%6s %-50s %-6s\n", "Round", "Target phrase", "Score");
+        System.out.println("------------------------------------------------------------------");
+        for (int i = 0; i < rounds; i++) {
+            System.out.printf("%6d %-50s %2.2f\n", i + 1, guessed[i], scores[i]);
+        }
+        System.out.println("------------------------------------------------------------------");
+        System.out.printf("The average score is %2.2f\n", avg);
     }
 }
