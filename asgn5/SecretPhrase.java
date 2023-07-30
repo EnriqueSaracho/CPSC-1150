@@ -14,9 +14,9 @@ import java.util.Scanner;
  */
 public class SecretPhrase {
     static String[] phrases = new String[100];
-    static int rounds = 5;
-    static float[] scores = new float[rounds];
-    static String[] guessed = new String[rounds];
+    static int rounds;
+    static float[] scores = new float[15];
+    static String[] guessed = new String[15];
 
     /**
      * main: Loops through the game, until the user guesses all the letters
@@ -26,19 +26,36 @@ public class SecretPhrase {
      * @param args
      */
     public static void main(String[] args) throws Exception {
-        getPhrases("./Phrases.txt");
+        if (args.length == 2 || args.length == 3) {
+            rounds = Integer.parseInt(args[0]);
+            if (args[1].equals("-1"))
+                getPhrases();
+            else if (args[1].equals("-f"))
+                getPhrases(args[2]);
+            else {
+                System.out.println("Error: invalid input.");
+                System.exit(1);
+            }
 
-        float sum = 0;
-        for (int i = 0; i < rounds; i++) {
-            playRound(i);
-            sum += scores[i];
+            float sum = 0;
+            for (int i = 0; i < rounds; i++) {
+                playRound(i);
+                sum += scores[i];
+            }
+            float avg = sum / rounds;
+
+            printResults(avg);
+
+        } else {
+            System.out.println("Usage: java SecretPhrase rounds [-1 | -f filename]");
+            System.out.printf("%-12s: a positive integer that represents the number of rounds for running program\n",
+                    "rounds");
+            System.out.printf("%-12s: randomly selects the targets from a list of phrases\n", "-1");
+            System.out.printf("%-12s: randomly selects the targets from the filename\n", "-f filename");
+            System.exit(1);
         }
-        float avg = sum / rounds;
-
-        printResults(avg);
     }
 
-    // TODO: External documentation
     /**
      * playRound: Runs a round of the guessing game by picking a random phrase from
      * the phrases global array, keeping track of the guesses, counting the tries
@@ -122,7 +139,16 @@ public class SecretPhrase {
         return false;
     }
 
-    // TODO: External documentation
+    /**
+     * getPhrases: fills the phrases global array with ten default phrases.
+     */
+    public static void getPhrases() {
+        String[] defaultPhrases = { "Looks like rain", "Wind's howling", "Who woulda thunk", "Hello World",
+                "Winter is coming", "Thanks bunches", "Hiking is fun", "Go team", "Hermit turtle", "Tall trees" };
+        for (int i = 0; i < defaultPhrases.length; i++)
+            phrases[i] = defaultPhrases[i];
+    }
+
     /**
      * getPhrases: reads frases from file of name given as argument, and adds them
      * to phrases global array.
@@ -147,7 +173,6 @@ public class SecretPhrase {
         input.close();
     }
 
-    // TODO: External documentation
     /**
      * getPhrasesLength: Counts the number of elements inside the phrases global
      * array that are not null.
@@ -165,7 +190,6 @@ public class SecretPhrase {
         return count;
     }
 
-    // TODO: External documentation
     /**
      * printResults: Prints the results of the game in tabular form. A column for
      * the rounds, one for the phrase and another for the score. It also displays
@@ -177,9 +201,8 @@ public class SecretPhrase {
         JOptionPane.showMessageDialog(null, "Check the console for the results.");
         System.out.printf("\n%6s %-50s %-6s\n", "Round", "Target phrase", "Score");
         System.out.println("------------------------------------------------------------------");
-        for (int i = 0; i < rounds; i++) {
+        for (int i = 0; i < rounds; i++)
             System.out.printf("%6d %-50s %2.2f\n", i + 1, guessed[i], scores[i]);
-        }
         System.out.println("------------------------------------------------------------------");
         System.out.printf("The average score is %2.2f\n", avg);
     }
