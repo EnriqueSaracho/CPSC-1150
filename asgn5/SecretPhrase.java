@@ -206,4 +206,47 @@ public class SecretPhrase {
         System.out.println("------------------------------------------------------------------");
         System.out.printf("The average score is %2.2f\n", avg);
     }
+
+    // Exercise 2
+    /**
+     * partition: finds where the pivot (first element of the array) would be placed
+     * if the array was rearranged so that all elements before it were smaller and
+     * all elements after it were larger.
+     * 
+     * @param list array of integers.
+     * @return the index of the pivot after the rearrangement.
+     */
+    public static int partition(int[] list) {
+        int pivot = list[0];
+        int i = 1;
+        int j = list.length - 1;
+        while (i < j) {
+            if (list[i] <= pivot)
+                i++;
+            if (list[j] >= pivot)
+                j--;
+            if (list[i] > pivot && list[j] < pivot) {
+                i++;
+                j--;
+            }
+        }
+        return j;
+    }
+
+    // Exercise 3
+    /**
+     * reverseDisplay: reverses a word by taking its last value to a new string
+     * recursively.
+     * 
+     * @param value a string.
+     * @return a string with the characters of 'value' in reversed order.
+     */
+    public static String reverseDisplay(String value) {
+        String reverse = "";
+        reverse += value.charAt(value.length() - 1);
+        value = value.substring(0, value.length() - 1);
+        if (value != "")
+            reverse += reverseDisplay(value);
+        return reverse;
+    }
 }
