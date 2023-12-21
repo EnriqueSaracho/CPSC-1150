@@ -1,3 +1,3 @@
-# CPSC - 1150 Program Design (class notes and work)
+# CPSC - 1150 Program Design
 
 - Java
